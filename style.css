@@ -1,0 +1,71 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 16px;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    background: black;
+    color: white;
+    height: 10vh;
+}
+
+#content {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#sidebar {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    background: lightslategrey;
+}
+
+#game {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+}
+#gameboard {
+    display: grid;
+    height: 30rem;
+    width: 30rem;
+    grid-template-columns: repeat( 3, 1fr);
+    grid-template-rows: repeat( 3, 1fr);
+}
+
+.square {
+    height: 10rem;
+    width: 10rem;
+}
+.square:hover {
+    cursor: pointer;
+    background: rgb(225, 231, 236);
+    transition: 0.07ms;
+}
+
+#one, #four, #seven {
+    border-right: 1px solid black;
+}
+
+#three, #six, #nine {
+    border-left: 1px solid black;
+}
+
+#one, #two, #three {
+    border-bottom: 1px solid black;;
+}
+#seven, #eight, #nine {
+    border-top: 1px solid black;;
+}
