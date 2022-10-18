@@ -37,6 +37,7 @@ justify-content: center;
     justify-content: center;
     padding-top: 3rem;
 }
+
 #gameboard {
     display: grid;
     height: 30rem;
@@ -48,6 +49,8 @@ justify-content: center;
 .square {
     height: 10rem;
     width: 10rem;
+    text-align: center;
+    font-size: 9rem;
 }
 .square:hover {
     cursor: pointer;
@@ -55,17 +58,18 @@ justify-content: center;
     transition: 0.07ms;
 }
 
-#one, #four, #seven {
+[id='0'], [id='3'], [id='6'] {
     border-right: 1px solid black;
 }
 
-#three, #six, #nine {
+[id='2'], [id='5'], [id='8'] {
     border-left: 1px solid black;
 }
 
-#one, #two, #three {
+[id='0'], [id='1'], [id='2'] {
     border-bottom: 1px solid black;;
 }
-#seven, #eight, #nine {
+
+[id='6'], [id='7'], [id='8'] {
     border-top: 1px solid black;;
 }
