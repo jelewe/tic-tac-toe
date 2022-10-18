@@ -1,15 +1,6 @@
 let state = ["X", "", "O", "", "X", "O", "", "", ""];
 
-let square = document.querySelectorAll('.square');
-square.forEach(i => addMark(i));
-function addMark(i) {
-    i.onclick = (e) => {
-    if (i.innerText == "") {
-        i.innerText += "X";
-    };
-};
-    
-};
+
 
 const gameboard = (() => {
     const display = () => {
@@ -28,13 +19,24 @@ const gameFlowModule = (() => {
 })();
 
 const playerFactory = (name) => {
+    const square = document.querySelectorAll('.square');
     const getName = () => name;
+    const addMark = (i) => {
+        square.forEach(i => 
+        i.onclick = (e) => {
+        if (i.innerText == "") {
+            i.innerText = getName();
+            };
+            //update state???
+        });
+    };
 
-    return {getName};
+    return {getName, addMark};
 };
 
 const player1 = playerFactory('X');
 const player2 = playerFactory('O');
 
 gameboard.display();
+player2.addMark();
 
