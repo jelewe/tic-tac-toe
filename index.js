@@ -24,11 +24,17 @@ const gameFlow = (() => {
     let player1turn = true;
     const play = (i) => {
            if (player1turn == true) {
+            if (gameboard.state[i.id] != null) {
+                return;
+            };
             i.innerText = "X";
             gameboard.state[i.id] = "X";
             checkForWin();
             return player1turn = false;
            } else {
+            if (gameboard.state[i.id] != null) {
+                return;
+            };
             i.innerText = "O";
             gameboard.state[i.id] = "O";
             checkForWin();
@@ -66,7 +72,7 @@ const gameFlow = (() => {
             };
         };
     }; 
-
+//need to stop gameplay after win is found
     
 
     return {play, checkForWin};
