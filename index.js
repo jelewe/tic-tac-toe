@@ -5,7 +5,7 @@ square.forEach(i =>
 //model - needs its own CRUD
 const gameboard = (() => {
  //gameboard/state needs to be updated, methods to update state 
-    let state =  ["", "", "", "", "", "", "", "", ""];
+    let state =  [null, null, null, null, null, null, null, null, null];
     return {state};
 })();
 
@@ -26,23 +26,46 @@ const gameFlow = (() => {
            if (player1turn == true) {
             i.innerText = "X";
             gameboard.state[i.id] = "X";
-            console.log(gameboard.state);
-            console.log(i);
             checkForWin();
             return player1turn = false;
            } else {
             i.innerText = "O";
             gameboard.state[i.id] = "O";
-            console.log(gameboard.state);
-            console.log(i);
             checkForWin();
             return player1turn = true;
            }
     };
     const checkForWin = () => {
-
-        }
-
+        if (gameboard.state[0] != null) {
+            if (gameboard.state[0] == gameboard.state[1] && gameboard.state[0] == gameboard.state[2] ||
+                gameboard.state[0] == gameboard.state[3] && gameboard.state[0] == gameboard.state[6] ||
+                gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8]) {
+                   return console.log("YouWin");
+                };
+            };
+        if (gameboard.state[2] != null) {
+                if (gameboard.state[2] == gameboard.state[5] && gameboard.state[2] == gameboard.state[8] ||
+                    gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6]) {
+                        return console.log("You Win");
+                    };
+                };
+        if (gameboard.state[1] != null) {
+            if (gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7]) {
+                return console.log("You Win");
+            };
+        };
+        if (gameboard.state[3] != null ) {
+            console.log(gameboard.state);
+            if (gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
+                return console.log("You Win");
+            }
+        };
+        if (gameboard.state[6] != null) {
+            if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8]) {
+                return console.log("You Win");
+            };
+        };
+    }; 
 
     
 
