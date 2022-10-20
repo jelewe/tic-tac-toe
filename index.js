@@ -83,7 +83,7 @@ const gameFlow = (() => {
     };
     const stopPlay = () => {
         square.forEach(i => 
-            i.preventDefault());
+            i.onclick = null);
     };
 
     const resetGame = () => {
