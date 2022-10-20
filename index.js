@@ -53,6 +53,7 @@ const gameFlow = (() => {
                 gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8]) {
                    console.log("YouWin");
                    gameFlow.stopPlay();
+                   return;
                 };
             };
         if (gameboard.state[2] != null) {
@@ -60,26 +61,33 @@ const gameFlow = (() => {
                     gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6]) {
                         console.log("You Win");
                         gameFlow.stopPlay();
+                        return;
                     };
                 };
         if (gameboard.state[1] != null) {
             if (gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7]) {
                 console.log("You Win");
                 gameFlow.stopPlay();
+                return;
             };
         };
         if (gameboard.state[3] != null ) {
             if (gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
                 console.log("You Win");
                 gameFlow.stopPlay();
+                return;
             };
         };
         if (gameboard.state[6] != null) {
             if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8]) {
                 console.log("You Win");
                 gameFlow.stopPlay();
+                return;
             };
         };
+        if (gameboard.state[0, 1, 2, 3, 4, 5, 6, 7, 8] != null) {
+            console.log("Tie!");
+        }
     };
     const stopPlay = () => {
         square.forEach(i => 
