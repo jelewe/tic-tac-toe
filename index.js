@@ -6,7 +6,12 @@ square.forEach(i =>
 const gameboard = (() => {
  //gameboard/state needs to be updated, methods to update state 
     let state =  [null, null, null, null, null, null, null, null, null];
-    return {state};
+    const reset = (state) => {
+        state = [null, null, null, null, null, null, null, null, null];
+        console.log(gameboard.state);
+        return state;
+    }
+    return {state, reset};
 })();
 
 //view - also needs its own CRUD
@@ -39,43 +44,56 @@ const gameFlow = (() => {
             gameboard.state[i.id] = "O";
             checkForWin();
             return player1turn = true;
-           }
+           };
     };
     const checkForWin = () => {
         if (gameboard.state[0] != null) {
             if (gameboard.state[0] == gameboard.state[1] && gameboard.state[0] == gameboard.state[2] ||
                 gameboard.state[0] == gameboard.state[3] && gameboard.state[0] == gameboard.state[6] ||
                 gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8]) {
-                   return console.log("YouWin");
+                   console.log("YouWin");
+                   gameFlow.stopPlay();
                 };
             };
         if (gameboard.state[2] != null) {
                 if (gameboard.state[2] == gameboard.state[5] && gameboard.state[2] == gameboard.state[8] ||
                     gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6]) {
-                        return console.log("You Win");
+                        console.log("You Win");
+                        gameFlow.stopPlay();
                     };
                 };
         if (gameboard.state[1] != null) {
             if (gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7]) {
-                return console.log("You Win");
+                console.log("You Win");
+                gameFlow.stopPlay();
             };
         };
         if (gameboard.state[3] != null ) {
-            console.log(gameboard.state);
             if (gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
-                return console.log("You Win");
-            }
+                console.log("You Win");
+                gameFlow.stopPlay();
+            };
         };
         if (gameboard.state[6] != null) {
             if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8]) {
-                return console.log("You Win");
+                console.log("You Win");
+                gameFlow.stopPlay();
             };
         };
-    }; 
-//need to stop gameplay after win is found
+    };
+    const stopPlay = () => {
+        square.forEach(i => 
+            i.preventDefault());
+    };
+
+    const resetGame = () => {
+        gameboard.state = [null, null, null, null, null, null, null, null, null];
+        displayController.display(gameboard.state);
+        return player1turn = true;
+    };
     
 
-    return {play, checkForWin};
+    return {play, checkForWin, stopPlay, resetGame};
 })();
 
 const playerFactory = (name) => {
