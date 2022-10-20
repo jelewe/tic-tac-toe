@@ -18,19 +18,25 @@ const displayController = (() => {
     const display = (state) => {
         for(let i=0; i<= (state.length - 1); i++) {
         document.getElementById([i]).innerText = state[i];
+        };
     };
-};
-const displayWinner = (player1turn) => {
-    const div = document.querySelector('#winnerDisplay');
-    if (player1turn == true) {
-        div.innerText = "player1 wins!";
-    } else if (player1turn == false) {
-        div.innerText = "player2 wins!";
-    } else {
-        div.innerText = "It's a tie!";
+    const displayWinner = (player1turn) => {
+        const div = document.querySelector('#winnerDisplay');
+        if (player1turn == true) {
+            div.innerText = "player1 wins!";
+        } else if (player1turn == false) {
+            div.innerText = "player2 wins!";
+        } else if (player1turn == null) {
+            div.innerText = "It's a tie!";
+        } else if (player1turn == "") {
+            div.innerText = "";
+        };
     };
-};
-    return {display, displayWinner};
+    const resetDiv = () => {
+        const div = document.querySelector('#winnerDisplay');
+        div.innerText = "";
+    };
+    return {display, displayWinner, resetDiv};
 })();
 
 //controller - control state changes, player turn is a game state, check for wins
@@ -118,6 +124,7 @@ const gameFlow = (() => {
         displayController.display(gameboard.state);
         square.forEach(i => 
             i.onclick = (e) => gameFlow.play(i));
+        displayController.resetDiv();
         return player1turn = true;
     };
     
