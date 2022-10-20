@@ -116,6 +116,8 @@ const gameFlow = (() => {
     const resetGame = () => {
         gameboard.state = [null, null, null, null, null, null, null, null, null];
         displayController.display(gameboard.state);
+        square.forEach(i => 
+            i.onclick = (e) => gameFlow.play(i));
         return player1turn = true;
     };
     
