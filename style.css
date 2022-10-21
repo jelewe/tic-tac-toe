@@ -24,15 +24,34 @@ justify-content: center;
 }
 
 #sidebar {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding: 1rem;
     background: lightslategrey;
 }
 
+#winnerDisplay {
+    color:white;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+button {
+    height: 100%;
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.07ms;
+
+}
+
 #game {
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     padding-top: 3rem;
@@ -72,4 +91,21 @@ justify-content: center;
 
 [id='6'], [id='7'], [id='8'] {
     border-top: 1px solid black;;
+}
+
+@media only screen and (max-width: 480px) {
+    #gameboard {
+        display: grid;
+        height: 24rem;
+        width: 24rem;
+        grid-template-columns: repeat( 3, 1fr);
+        grid-template-rows: repeat( 3, 1fr);
+    }
+    
+    .square {
+        height: 8rem;
+        width: 8rem;
+        text-align: center;
+        font-size: 9rem;
+    }
 }

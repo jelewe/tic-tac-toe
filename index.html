@@ -17,12 +17,16 @@
     </div>
     <div id="content">
         <div id="sidebar">
-            <span>Player 1</span>
-            <span>Player 2</span>
-            <button id="reset" onclick="gameFlow.resetGame()">Reset</button>
-            <div id="winnerDisplay"></div>
-            
-
+            <div class="left">
+                <span>Player 1</span><br />
+                <span>Player 2</span>
+            </div>
+            <div class="center">
+                <div id="winnerDisplay"></div>
+            </div>
+            <div class="right">
+                <button id="reset" onclick="gameFlow.resetGame()">Reset</button>
+            </div>
         </div>
         <div id="game">
             <div id="gameboard">
