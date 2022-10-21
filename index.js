@@ -20,13 +20,11 @@ const displayController = (() => {
     const displayWinner = (player1turn) => {
         const div = document.querySelector('#winnerDisplay');
         if (player1turn == true) {
-            div.innerText = "player1 wins!";
+            div.innerText = "Player 1 wins!";
         } else if (player1turn == false) {
-            div.innerText = "player2 wins!";
+            div.innerText = "Player 2 wins!";
         } else if (player1turn == null) {
             div.innerText = "It's a tie!";
-        } else if (player1turn == "") {
-            div.innerText = "";
         };
     };
 
@@ -67,6 +65,7 @@ const gameFlow = (() => {
     };
 
     const playComputer = (i) => {
+        console.log(player1turn);
         if (player1turn == true) {
             if (gameboard.state[i.id] != null) {
                 return;
@@ -135,12 +134,14 @@ const gameFlow = (() => {
             gameboard.state[7] != null &&
             gameboard.state[8] != null) {
                 displayController.displayWinner(null);
+                computerMove.preventDefault();
             };
         };
 
     const stopPlay = () => {
         square.forEach(i => 
             i.onclick = null);
+            computerMove.preventDefault();
     };
 
     const resetGame = () => {
