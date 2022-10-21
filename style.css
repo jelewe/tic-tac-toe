@@ -6,6 +6,19 @@ body {
     font-size: 16px;
 }
 
+.start {
+    color:black;
+    background:white;
+    text-align: center;
+}
+
+.startBtn {
+    height: 2rem;
+    width: 4.5rem;
+    font-size: 0.7rem;
+    margin: 0.5rem;
+}
+
 #header {
     display: flex;
     justify-content: center;
