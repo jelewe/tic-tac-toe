@@ -44,6 +44,10 @@ justify-content: center;
     background: lightslategrey;
 }
 
+#sidebar .left {
+    text-align: left;
+}
+
 #winnerDisplay {
     color:white;
     font-weight: bold;

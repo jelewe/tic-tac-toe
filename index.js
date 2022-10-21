@@ -42,6 +42,8 @@ const displayController = (() => {
 const gameFlow = (() => {
     const startMenu = document.querySelector('.start');
     const square = document.querySelectorAll('.square');
+    const span1 = document.querySelector('.one');
+    const span2 = document.querySelector('.two');
     let player1turn = true;
     const play = (i) => {
            if (player1turn == true) {
@@ -174,12 +176,16 @@ const gameFlow = (() => {
     };
 
     const start2Player = () => {
+        span1.innerText = ("Player 1: Human");
+        span2.innerText = ("Player 2: Human");
         square.forEach(i => 
         i.onclick = (e) => gameFlow.play(i));
         startMenu.style.display = 'none';
     };
 
     const startComputer = () => {
+        span1.innerText = ("Player 1: Human");
+        span2.innerText = ("Player 2: Computer");
         square.forEach(i => 
             i.onclick = (e) => gameFlow.playComputer(i));
         startMenu.style.display = 'none';
