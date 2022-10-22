@@ -1,15 +1,11 @@
 
-//model 
+//model /gamestate data
 const gameboard = (() => {
     let state =  [null, null, null, null, null, null, null, null, null];
-    const reset = (state) => {
-        state = [null, null, null, null, null, null, null, null, null];
-        return state;
-    }
-    return {state, reset};
+    return {state};
 })();
 
-//view 
+//view / DOM
 const displayController = (() => {
     const display = (state) => {
         for(let i=0; i<= (state.length - 1); i++) {
@@ -31,18 +27,18 @@ const displayController = (() => {
     const resetDiv = () => {
         const div = document.querySelector('#winnerDisplay');
         div.innerText = "";
-    };
-
+    }
     return {display, displayWinner, resetDiv};
 })();
 
-//controller
+//controller / gameplay logic
 const gameFlow = (() => {
     const startMenu = document.querySelector('.start');
     const square = document.querySelectorAll('.square');
     const span1 = document.querySelector('.one');
     const span2 = document.querySelector('.two');
     let player1turn = true;
+    let win = false;
     const play = (i) => {
            if (player1turn == true) {
             if (gameboard.state[i.id] != null) {
@@ -65,18 +61,18 @@ const gameFlow = (() => {
     };
 
     const playComputer = (i) => {
-        console.log(player1turn);
-        if (player1turn == true) {
-            if (gameboard.state[i.id] != null) {
+        if (gameboard.state[i.id] != null) {
                 return;
-            };
+         } else {
             i.innerText = "X";
             gameboard.state[i.id] = "X";
             checkForWin();
             player1turn = false;
-           };
-           computerMove();
+         };
+           if (win == false) {
+            computerMove();
     };
+};
 
     const computerMove = () => {
         computerChoice = square[Math.floor(Math.random()*square.length)];
@@ -97,6 +93,7 @@ const gameFlow = (() => {
                 gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8]) {
                     displayController.displayWinner(player1turn);
                    gameFlow.stopPlay();
+                   return win= true;
                 };
             };
         if (gameboard.state[2] != null) {
@@ -104,24 +101,28 @@ const gameFlow = (() => {
                     gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6]) {
                         displayController.displayWinner(player1turn);
                         gameFlow.stopPlay();
+                        return win= true;
                     };
                 };
         if (gameboard.state[1] != null) {
             if (gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7]) {
                 displayController.displayWinner(player1turn);
                 gameFlow.stopPlay();
+                return win= true;
             };
         };
         if (gameboard.state[3] != null ) {
             if (gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
                 displayController.displayWinner(player1turn);
                 gameFlow.stopPlay();
+                return win= true;
             };
         };
         if (gameboard.state[6] != null) {
             if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8]) {
                 displayController.displayWinner(player1turn);
                 gameFlow.stopPlay();
+                return win= true;
             };
         };
         if (gameboard.state[0] != null && 
@@ -134,14 +135,13 @@ const gameFlow = (() => {
             gameboard.state[7] != null &&
             gameboard.state[8] != null) {
                 displayController.displayWinner(null);
-                computerMove.preventDefault();
+                return win= true;
             };
         };
 
     const stopPlay = () => {
         square.forEach(i => 
             i.onclick = null);
-            computerMove.preventDefault();
     };
 
     const resetGame = () => {
@@ -150,6 +150,7 @@ const gameFlow = (() => {
         displayController.resetDiv();
         startMenu.style.display = '';
         gameFlow.start();
+        win = false;
         return player1turn = true;
     };
 
@@ -194,14 +195,6 @@ const gameFlow = (() => {
 
     return {play, playComputer, checkForWin, stopPlay, resetGame, start};
 })();
-
-const playerFactory = (name) => {
-    const getName = () => name;
-    return {getName};
-};
-
-const player1 = playerFactory('X');
-const player2 = playerFactory('O');
 
 gameFlow.start();
 
