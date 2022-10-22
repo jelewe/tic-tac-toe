@@ -39,6 +39,7 @@ const gameFlow = (() => {
     const span2 = document.querySelector('.two');
     let player1turn = true;
     let win = false;
+
     const play = (i) => {
            if (player1turn == true) {
             if (gameboard.state[i.id] != null) {
@@ -70,21 +71,28 @@ const gameFlow = (() => {
             player1turn = false;
          };
            if (win == false) {
+            // if computerEasy = true,
             computerMove();
+            //else,
+            //computerMoveHard();
     };
 };
 
     const computerMove = () => {
-        computerChoice = square[Math.floor(Math.random()*square.length)];
+        let computerChoice = square[Math.floor(Math.random()*square.length)];
         if (gameboard.state[computerChoice.id] != null) {
             computerMove();
         } else {
-            computerChoice.innerText = "O";
-            gameboard.state[computerChoice.id] = "O";
+            computerMark(computerChoice);
             checkForWin();
             return player1turn = true;
         };
     };
+
+    const computerMark = (c) => {
+        c.innerText = "O";
+        gameboard.state[c.id] = "O";
+    }
 
     const checkForWin = () => {
         if (gameboard.state[4] != null){
@@ -177,3 +185,191 @@ const gameFlow = (() => {
 })();
 
 gameFlow.start();
+
+/* console.log(Math.floor(Math.random()*5));
+
+//make move() ??? would cut down on repeat code. might need to bring back playerFactory 
+
+//---- turn 1
+//max
+if (gameboard.state[4] != null) {
+    let 0 = gameboard.state[0], 1= 2, 3= 6, 4=8
+    move gameboard.state[Math.floor(Math.random()*5)]
+//min
+} else {
+    move gameboard.state[4]
+}
+
+//---- turn 2
+//min
+if ((gameboard.state[2] == 'X' &&
+    gameboard.state[1] == 'X') ||
+    (gameboard.state[6] == 'X' &&
+    gameboard.state[3] == 'X') ||
+    (gameboard.state [4] == 'X' && 
+     gameboard.state[8] == 'X')) {
+        move gameboard.state [0]
+
+} else if ((gameboard.state[0] == 'X' &&
+    gameboard.state[2] == 'X') ||
+    (gameboard.state[4] == 'X' &&
+    gameboard.state[7] == 'X')) {
+        move gameboard.state[1]
+
+} else if ((gameboard.state[0] == 'X' &&
+gameboard.state[1] == 'X') ||
+(gameboard.state[8] == 'X' &&
+gameboard.state[5] == 'X') ||
+(gameboard.state [4] == 'X' && 
+ gameboard.state[6] == 'X')) {
+    move gameboard.state[2]
+
+} else if ((gameboard.state[0] == 'X' &&
+gameboard.state[6] == 'X') ||
+(gameboard.state[4] == 'X' &&
+gameboard.state[5] == 'X')) {
+    move gameboard.state[3]
+
+} else if ((gameboard.state[2] == 'X' &&
+gameboard.state[8] == 'X') ||
+(gameboard.state[3] == 'X' &&
+gameboard.state[4] == 'X')) {
+    move gameboard.state[5]
+
+} else if ((gameboard.state[0] == 'X' &&
+    gameboard.state[3] == 'X') ||
+    (gameboard.state[8] == 'X' &&
+    gameboard.state[7] == 'X') ||
+    (gameboard.state [4] == 'X' && 
+    gameboard.state[2] == 'X')) {
+        move gameboard.state[6]
+
+} else if ((gameboard.state[6] == 'X' &&
+    gameboard.state[8] == 'X') || 
+    (gameboard.state[6] == 'X' &&
+    gameboard.state[8] == 'X')) {
+        move gameboard.state[7]
+
+} else if ((gameboard.state[2] == 'X' &&
+    gameboard.state[5] == 'X') ||
+    (gameboard.state[6] == 'X' &&
+    gameboard.state[7] == 'X') ||
+    (gameboard.state [4] == 'X' && 
+     gameboard.state[0] == 'X')) {
+        move gameboard.state [8]
+//max
+//you can likely condense these conditions
+} else if (gameboard.state [4] == 'X' && 
+            (gameboard.state[6] == 'X') ||
+            (gameboard.state [0] == 'X' && 
+            gameboard.state[4] == 'X')) {
+                move gameboard.state[2]
+} else if ((gameboard.state [0] == 'O' && 
+    gameboard.state[1] == 'O') ||
+    (gameboard.state [8] == 'O' && 
+    gameboard.state[5] == 'O')) {
+        move gameboard.state[8]
+} else {
+    let 0 = gameboard.state[0], 1= 2, 3= 6, 4=8
+    move gameboard.state[Math.floor(Math.random()*5)]
+}
+
+//---- turn 3
+
+//max
+if (gameboard.state[0] == null) {
+    if ((gameboard.state[1] == 'O' && gameboard.state [2] == 'O') ||
+    (gameboard.state[3] == 'O' && gameboard.state [6] == 'O') ||
+    (gameboard.state[4] == 'O' && gameboard.state [8] == 'O')) {
+        move gameboard.state[0]
+        checkForWin();
+    };
+ }
+if (gameboard.state[1] == null) {
+    if ((gameboard.state[0] == 'O' && gameboard.state [2] == 'O') ||
+    (gameboard.state[4] == 'O' && gameboard.state [7] == 'O')) {
+        move gameboard.state[1]
+        checkForWin();
+    };
+} 
+if (gameboard.state[2] == null) {
+    if ((gameboard.state[0] == 'O' && gameboard.state [1] == 'O') ||
+    (gameboard.state[5] == 'O' && gameboard.state [8] == 'O') ||
+    (gameboard.state[4] == 'O' && gameboard.state [6] == 'O')) {
+        move gameboard.state[2]
+        checkForWin();
+    };
+} if (gameboard.state[3] == null) {
+    if ((gameboard.state[0] == 'O' && gameboard.state [6] == 'O') ||
+    (gameboard.state[4] == 'O' && gameboard.state [5] == 'O')) {
+        move gameboard.state[3]
+        checkForWin();
+    };
+} 
+if (gameboard.state[5] == null) {
+    if ((gameboard.state[2] == 'O' && gameboard.state [8] == 'O') ||
+    (gameboard.state[3] == 'O' && gameboard.state [4] == 'O')) {
+        move gameboard.state[5]
+        checkForWin();
+    };
+} 
+if (gameboard.state[6] == null) {
+    if ((gameboard.state[0] == 'O' && gameboard.state [3] == 'O') ||
+    (gameboard.state[7] == 'O' && gameboard.state [8] == 'O') || 
+    (gameboard.state[2] == 'O' && gameboard.state [4] == 'O')) {
+        move gameboard.state[6]
+        checkForWin();
+    };
+} 
+if (gameboard.state[7] == null) {
+    if ((gameboard.state[0] == 'O' && gameboard.state [4] == 'O') ||
+        (gameboard.state[6] == 'O' && gameboard.state [8] == 'O')) {
+            move gameboard.state[7]
+            checkForWin();
+        };
+} if (gameboard.state[8] == null) {
+    if ((gameboard.state[2] == 'O' && gameboard.state [5] == 'O') ||
+        (gameboard.state[6] == 'O' && gameboard.state [7] == 'O') || 
+        (gameboard.state[0] == 'O' && gameboard.state [4] == 'O')) {
+            move gameboard.state[8]
+            checkForWin();
+        };
+    }
+
+ //min
+if (gameboard.state[4] == 'X') {
+    if (gameboard.state[1] == 'X'){
+        move gameboard.state[7]
+    } else if (gameboard.state[3] == 'X') {
+        move gameboard.state[5]
+    } else if (gameboard.state[5] =='X'){
+        move gameboard.state[3]
+    } else if (gameboard.state[7] == 'X'){
+        move gameboard.state[1]
+    } else if (gameboard.state[6] == 'X' && gameboard.state[8] == 'X'){
+        move gameboard.state[7]
+    };
+
+}
+
+// ---- turn 4
+//min
+if (gameboard.state[4] == 'X') {
+    if (gameboard.state[3] == 'X') {
+        move gameboard.state[5]
+    } else if (gameboard.state [5] == 'X') {
+        move gameboard.state[3]
+    }
+let 0 = gameboard.state[0], 1= 2, 3= 6, 4=8
+    move gameboard.state[Math.floor(Math.random()*5)]
+
+*/
+
+
+
+
+
+
+
+
+
