@@ -87,39 +87,27 @@ const gameFlow = (() => {
     };
 
     const checkForWin = () => {
-        if (gameboard.state[0] != null) {
-            if (gameboard.state[0] == gameboard.state[1] && gameboard.state[0] == gameboard.state[2] ||
-                gameboard.state[0] == gameboard.state[3] && gameboard.state[0] == gameboard.state[6] ||
-                gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8]) {
+        if (gameboard.state[4] != null){
+            if (gameboard.state[0] == gameboard.state[4] && gameboard.state[0] == gameboard.state[8] ||
+                gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6] ||
+                gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7] ||
+                gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
                     displayController.displayWinner(player1turn);
-                   gameFlow.stopPlay();
-                   return win= true;
+                    gameFlow.stopPlay();
+                    return win= true;
                 };
-            };
+        };
         if (gameboard.state[2] != null) {
                 if (gameboard.state[2] == gameboard.state[5] && gameboard.state[2] == gameboard.state[8] ||
-                    gameboard.state[2] == gameboard.state[4] && gameboard.state[2] == gameboard.state[6]) {
+                    gameboard.state[0] == gameboard.state[1] && gameboard.state[0] == gameboard.state[2]) {
                         displayController.displayWinner(player1turn);
                         gameFlow.stopPlay();
                         return win= true;
                     };
                 };
-        if (gameboard.state[1] != null) {
-            if (gameboard.state[1] == gameboard.state[4] && gameboard.state[1] == gameboard.state[7]) {
-                displayController.displayWinner(player1turn);
-                gameFlow.stopPlay();
-                return win= true;
-            };
-        };
-        if (gameboard.state[3] != null ) {
-            if (gameboard.state[3] == gameboard.state[4] && gameboard.state[3] == gameboard.state[5]) {
-                displayController.displayWinner(player1turn);
-                gameFlow.stopPlay();
-                return win= true;
-            };
-        };
         if (gameboard.state[6] != null) {
-            if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8]) {
+            if (gameboard.state[6] == gameboard.state[7] && gameboard.state[6] == gameboard.state[8] ||
+                gameboard.state[0] == gameboard.state[3] && gameboard.state[0] == gameboard.state[6]) {
                 displayController.displayWinner(player1turn);
                 gameFlow.stopPlay();
                 return win= true;
@@ -189,7 +177,3 @@ const gameFlow = (() => {
 })();
 
 gameFlow.start();
-
-
-
-
