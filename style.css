@@ -39,8 +39,9 @@ justify-content: center;
 #sidebar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     background: lightslategrey;
 }
 
@@ -111,6 +112,14 @@ button:hover {
 }
 
 @media only screen and (max-width: 480px) {
+    .left {
+        font-size: 0.7rem;
+    }
+
+    #winnerDisplay {
+        font-size: 1rem;
+    }
+
     #gameboard {
         display: grid;
         height: 24rem;
