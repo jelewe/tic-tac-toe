@@ -125,15 +125,7 @@ const gameFlow = (() => {
                 return win= true;
             };
         };
-        if (gameboard.state[0] != null && 
-            gameboard.state[1] != null &&
-            gameboard.state[2] != null &&
-            gameboard.state[3] != null &&
-            gameboard.state[4] != null &&
-            gameboard.state[5] != null &&
-            gameboard.state[6] != null &&
-            gameboard.state[7] != null &&
-            gameboard.state[8] != null) {
+        if (gameboard.state.every((x) => x !== null)) {
                 displayController.displayWinner(null);
                 return win= true;
             };
